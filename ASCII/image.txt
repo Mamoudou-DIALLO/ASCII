@@ -1,0 +1,43 @@
+#!/bin/bash
+echo -e "\tmon point"
+point()
+{
+declare -A tab
+tab["10"]="$1"
+var=( ${tab["10"]} ) 
+printf "%s" ${var[@]}
+printf "\n"
+}
+echo -e $(point $@)
+	echo -e "\tma droite"
+droite()
+{
+	for i in $(seq $2)
+	do
+		echo -e $(point $@)
+	done
+}
+echo -e $(droite $@)
+echo "X1=0 et x2 est votre deuxieme argument"
+echo -e "\tmon rectagle"
+rectangle()
+{
+echo -e $(droite $@)
+echo -e "$(point $@)\t$(point $@)"
+echo -e "$(point $@)\t$(point $@)"
+echo -e $(droite $@)	
+}
+echo -e "\n$(rectangle $@)\n"
+	echo -e "\tmon peti dessin "
+peti_dessin()
+{
+printf "\t\n$(rectangle $@)\n"
+for i in $(seq $2)
+do
+echo -e "\t$(point $@)"
+done
+echo -e $(droite $@)
+}
+echo "$(peti_dessin $@)$(peti_dessin $@)"
+
+
